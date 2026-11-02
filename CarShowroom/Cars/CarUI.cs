@@ -52,6 +52,7 @@ namespace CarShowroom.Cars
             Console.WriteLine("5. Delete a car");
             Console.WriteLine("6. Sell a car to a customer");
             Console.WriteLine("7. Sales report");
+            Console.WriteLine("8.partial matching");
             Console.WriteLine("0. Back");
             Console.Write("Choose an option: ");
         }
@@ -273,6 +274,24 @@ namespace CarShowroom.Cars
                                   " (" + car.Price.ToString("N0") + ")");
             }
         }
+        //-------------partial search----------
+          private void GetPartialSearch()
+        {
+            Console.WriteLine("=======Partial Matching========");
+            Console.Write("letters to search for: ");
+            string text = Console.ReadLine();
+            PrintCars(carService.SearchByLetters(text, false));
+
+        }
+        private void GetExactMatch()
+        {
+            Console.WriteLine("=======Partial Matching========");
+            Console.Write("words to search for: ");
+            string text = Console.ReadLine();
+            PrintCars(carService.SearchByWords(text, false));
+
+        }
+
 
         // ---------- Printing ----------
 

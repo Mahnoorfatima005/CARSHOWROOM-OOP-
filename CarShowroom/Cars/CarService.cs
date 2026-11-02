@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
+using System.Runtime.Remoting.Messaging;
 using CarShowroom.Customers;
 
 namespace CarShowroom.Cars
@@ -113,6 +115,7 @@ namespace CarShowroom.Cars
         {
             List<Car> result = new List<Car>();
 
+
             foreach (Car car in repo.GetAll())
             {
                 if (onlyAvailable && car.IsSold)
@@ -142,6 +145,21 @@ namespace CarShowroom.Cars
             }
             return result;
         }
+        //minimum price searchh-----
+        public List<Car> GetAvailableabovePrice(double minPrice)
+        {
+            List<Car> result = new List<Car>();
+
+            foreach (Car car in GetAvailable())
+            {
+                if (car.Price <= minPrice)
+                {
+                    result.Add(car);
+                }
+            }
+            return result;
+        }
+
 
         // The cars one customer has bought.
         public List<Car> GetByBuyer(int customerId)
@@ -276,5 +294,56 @@ namespace CarShowroom.Cars
             LastMessage = "Car deleted.";
             return true;
         }
+        //---------------search and filter------------------
+        public List<Car> GetByPartialSearching(string modelName, string brand, string color)
+        {
+            List<Car> result = new List<Car>();
+
+            foreach (Car car in GetAvailable())
+            {
+                if (car.ModelName == "la")
+                {
+                    result.Add(car);
+                }
+                if (car.Brand == "la")
+                {
+                    result.Add(car);
+                }
+                if (car.Color == "la")
+                {
+                    result.Add(car);
+                }
+
+            }
+        }       
+
+
+        public List<Car> GetExactMatch(string modelName, string brand, string color)
+        {
+            List<Car> result = new List<Car>();
+
+            foreach (Car car in GetAvailable())
+            {
+                if (car.ModelName == modelName)
+                {
+                    result.Add(car);
+                }
+                if (car.Brand == brand)
+                {
+                    result.Add(car);
+                }
+                if (car.Color == color)
+                {
+                    result.Add(car);
+                }
+
+            }
+            return result;
+        } 
     }
 }
+
+
+
+
+

@@ -98,6 +98,39 @@ namespace CarShowroom.Cars
             }
             return null;
         }
+        public Car GetByName(string name)
+        {
+            foreach (Car car in cars)
+            {
+                if (car.ModelName == name)
+                {
+                    return car;
+                }
+            }
+            return null;
+        }
+        public Car GetByBrand(string brand)
+        {
+            foreach (Car car in cars)
+            {
+                if (car.Brand == brand)
+                {
+                    return car;
+                }
+            }
+            return null;
+        }
+        public Car GetBycolor(string color)
+        {
+            foreach (Car car in cars)
+            {
+                if (car.Color == color)
+                {
+                    return car;
+                }
+            }
+            return null;
+        }
 
         // Update
         public bool Update(Car updatedCar)
